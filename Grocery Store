@@ -1,0 +1,20 @@
+CREATE TABLE store (id INTEGER PRIMARY KEY, item TEXT, cost INTEGER, aisle INTEGER, size TEXT);
+INSERT INTO store  VALUES (1, "milk", 2.50, 1, "m");
+INSERT INTO store  VALUES (2, "eggs", 1.75, 1, "s");
+INSERT INTO store  VALUES (3, "olive oil", .98, 2, "s");
+INSERT INTO store  VALUES (4, "bread", 1, 3, "m");
+INSERT INTO store  VALUES (5, "flour", 1.25, 2, "m");
+INSERT INTO store  VALUES (6, "sugar", 1.30, 2, "s");
+INSERT INTO store  VALUES (7, "cereal", 1, 2, "l");
+INSERT INTO store  VALUES (8, "ham", 4.50, 6, "l");
+INSERT INTO store  VALUES (9, "turkey", 5, 6, "l");
+INSERT INTO store  VALUES (10, "paper towel", 2.75, 5, "m");
+INSERT INTO store  VALUES (11, "paper plates", 2.50, 5, "s");
+INSERT INTO store  VALUES (12, "dish soap", 1.05, 4, "s");
+INSERT INTO store  VALUES (13, "trash can", 2.15, 4, "m");
+INSERT INTO store  VALUES (14, "coffee", 1.35, 3, "s");
+INSERT INTO store  VALUES (15, "pans", 9.50, 5, "l");
+INSERT INTO store  VALUES (16, "pots", 9.75, 5, "xl");
+
+SELECT item, cost FROM store 
+    ORDER BY cost;
