@@ -1,0 +1,52 @@
+
+
+CREATE TABLE cantante 
+    (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    artist TEXT,
+    origins TEXT,
+    year_started INTEGER);
+
+INSERT INTO cantante VALUES (1, "Selena", "US", 1981);
+INSERT INTO cantante VALUES (2, "Chavela Vargas", "Costa Rica", 1961);
+INSERT INTO cantante VALUES (3, "Chlalino Sanchez", "Mexico", 1984);
+INSERT INTO cantante VALUES (4, "Juan Gabriel", "Mexico", 1971);
+INSERT INTO cantante VALUES (5, "Sin Bandera", "Mexico", 2000);
+INSERT INTO cantante VALUES (6, "Celia Cruz", "Cuba", 1948);
+INSERT INTO cantante VALUES (7, "Los Tigres del Norte", "US", 1965);
+INSERT INTO cantante VALUES (8, "JCole", "US", 2007);
+INSERT INTO cantante VALUES (9, "AC/DC", "AUS", 1973);
+INSERT INTO cantante VALUES (10, "Dean Martin", "US", 1932);
+INSERT INTO cantante VALUES (11, "Beyonce", "US", 1997);
+INSERT INTO cantante VALUES (12, "Erykah Badu", "US", 1994);
+
+CREATE TABLE riaa
+    (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    gene TEXT,
+    rank TEXT,
+    year_received INTEGER); 
+INSERT INTO riaa VALUES (1, "Tejano", "diamond", 2017);
+INSERT INTO riaa VALUES (2, "Ranchera", null, null);
+INSERT INTO riaa VALUES (3, "Corrido", null, null);
+INSERT INTO riaa VALUES (4, "Pop", "platinum", 2000);
+INSERT INTO riaa VALUES (5, "Pop", "platinum", 2003);
+INSERT INTO riaa VALUES (6, "Salsa", "platinum", 2004);
+INSERT INTO riaa VALUES (7, "Norteno", "platinum", 2006);
+INSERT INTO riaa VALUES (8, "Hip-Hop", "platinum", 2019);
+INSERT INTO riaa VALUES (9, "Rock", "diamond", 2019);
+INSERT INTO riaa VALUES (10, "Swing", "platinum", 2004);
+INSERT INTO riaa VALUES (11, "Pop", "platinum", 2010);
+INSERT INTO riaa VALUES (12, "R&B", "platinum", 2000);
+
+
+SELECT cantante.artist, cantante.year_started, riaa.gene, riaa.rank
+FROM cantante
+    JOIN riaa
+    ON cantante.id = riaa.id;
+
+
+SELECT cantante.artist, cantante.year_started, riaa.year_received,
+(riaa.year_received - cantante.year_started) AS time_accomplished
+FROM cantante
+    JOIN riaa
+   ON cantante.id = riaa.id
+   WHERE riaa.year_received NOT NULL; 
