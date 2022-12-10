@@ -1,4 +1,4 @@
-
+/* Source: https://www.riaa.com/gold-platinum/ */
 
 CREATE TABLE cantante 
     (id INTEGER PRIMARY KEY AUTOINCREMENT,
