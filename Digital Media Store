@@ -1,0 +1,64 @@
+--Show Customers (their full names, customer ID, and country) who are not in the US.
+SELECT CustomerID, FirstName, LastName,  Country
+FROM chinook.customers
+WHERE NOT Country='USA';
+
+--Show only the Customers from Brazil.
+SELECT CustomerID, FirstName, LastName,  Country
+FROM chinook.customers
+WHERE Country='Brazil'; 
+
+--Find the Invoices of customers who are from Brazil. 
+SELECT c.firstname, c.lastname, i.invoiceID, i.invoicedate, i.billingcountry
+FROM chinook.customers c
+JOIN chinook.invoices i
+ON c.customerId = i.customerId
+WHERE c.country = 'Brazil';
+
+--Show the Employees who are Sales Agents.
+SELECT firstname, lastname, title
+FROM chinook.employees
+WHERE title = 'Sales Support Agent';
+
+--Find a unique/distinct list of billing countries from the Invoice table.
+SELECT COUNT(DISTINCT billingcountry) AS counties, COUNT(total)
+FROM chinook.invoices;
+
+--Shows the invoices associated with each sales agent.
+SELECT emp.LastName, emp.Firstname, inv.InvoiceId
+FROM chinook.Employees emp 
+JOIN chinook.Customers cust
+ON cust.SupportRepId = emp.EmployeeId
+JOIN chinook.Invoices Inv
+ON Inv.CustomerId = cust.CustomerId;
+
+--Show the Invoice Total, Customer name, Country, and Sales Agent name for all invoices and customers
+SELECT inv.Total,
+(cust.firstname || " " || cust.lastname) AS custName, cust.country, 
+(emp.Firstname ||" "|| emp.LastName) AS empName
+
+FROM chinook.Employees emp 
+JOIN chinook.Customers cust
+ON cust.SupportRepId = emp.EmployeeId
+JOIN chinook.Invoices Inv
+ON Inv.CustomerId = cust.CustomerId;
+
+--How many Invoices were there in 2009?
+SELECT COUNT(*)
+FROM chinook.invoices
+WHERE InvoiceDate BETWEEN '2009-01-01' AND '2009-12-31';
+
+--What are the total sales for 2009?
+SELECT SUM(total)
+FROM chinook.invoices
+WHERE InvoiceDate BETWEEN '2009-01-01' AND '2009-12-31';
+
+--The purchased track name AND artist name with each invoice line ID
+SELECT ar.name as Artist, t.Name as Track, i.InvoiceLineId
+FROM chinook.Invoice_items i
+LEFT JOIN chinook.tracks t 
+ON i.TrackID=t.TrackID
+INNER JOIN chinook.albums a
+ON a.AlbumID=t.AlbumID
+LEFT JOIN chinook.artists ar
+ON ar.ArtistID=a.ArtistID;
